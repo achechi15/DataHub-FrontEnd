@@ -3,33 +3,24 @@ import { Message } from "../entities/MessageEntity";
 
 interface ChatState {
     chat: Message[],
+    id: string,
 
     addMessage: (message: Message) => void;
 }
 
-export const useChatStore = create<ChatState>()( (set, get) => ({
+export const useChatStore = create<ChatState>()( (set) => ({
     chat: [
         {
         id: "abc",
         isBot: true,
-        content: "Hola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarte"
-        },
-        {
-        id: "abc",
-        isBot: true,
-        content: "Hola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarte"
-        },
-        {
-        id: "abc",
-        isBot: true,
-        content: "Hola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarte"
-        },
-        {
-        id: "abc",
-        isBot: true,
-        content: "Hola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarteHola soy un bot hecho para ayudarte"
+        content: "Hola soy un bot hecho para ayudarte"
         },
     ],
+    id: "1234567890",
+
+
+
+    
     addMessage: (message: Message) => {
 
         set(state => ({
@@ -38,6 +29,5 @@ export const useChatStore = create<ChatState>()( (set, get) => ({
                     message,
                 ]
         }))
-        // console.log(get());
     }
 }))

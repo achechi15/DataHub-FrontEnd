@@ -1,5 +1,7 @@
+import { response } from "../screens/ChatPage";
+
 export interface Message {
     id: string;
     isBot: boolean;
-    content: string;
+    content: string | response;
 }
