@@ -3,9 +3,13 @@ import { Message } from "../entities/MessageEntity";
 
 interface ChatState {
     chat: Message[],
-    id: string,
+    isLoading: boolean,
+    index: number,
 
+    setIndex: (index: number) => void,
+    editLastMessage: (message: Message) => void;
     addMessage: (message: Message) => void;
+    setIsLoading: (isLoading: boolean) => void;
 }
 
 export const useChatStore = create<ChatState>()( (set) => ({
@@ -13,13 +17,22 @@ export const useChatStore = create<ChatState>()( (set) => ({
         {
         id: "abc",
         isBot: true,
-        content: "Hola soy un bot hecho para ayudarte"
+        content: "Hola soy un bot hecho para ayudarte",
+        timestamp: new Date(),
         },
     ],
-    id: "1234567890",
+    index: 1,
+    isLoading: false,
 
-
-
+    editLastMessage: (message: Message) => {
+        set(state => ({
+            chat: [...state.chat.slice(0, -1), message]
+        }))
+    },
+    
+    setIndex: (index: number) => {
+        set({ index })
+    },
     
     addMessage: (message: Message) => {
 
@@ -29,5 +42,9 @@ export const useChatStore = create<ChatState>()( (set) => ({
                     message,
                 ]
         }))
+    },
+
+    setIsLoading: (isLoading: boolean) => {
+        set({ isLoading })
     }
 }))

@@ -1,103 +1,64 @@
+import { useState } from "react";
 import { Message } from "../entities/MessageEntity";
-import { useChatStore } from "../store/chat-store";
+import { ProductsTable } from "./ProductsTable";
+import { TypingIndicator } from "./TypingIndicator";
+import { AnimatedText } from "./functionalities/AnimatedText";
+// import { useChatStore } from "../store/chat-store";
 // import { useChatStore } from "../store/chat-store";
 
 interface Props {
     message: Message;
+    isLastMessage: boolean;
 }
 
 
 
-export const SingleMessage = ({ message }: Props) => {
+export const SingleMessage = ({ message, isLastMessage }: Props) => {
+
 
     return (
-        (!message.isBot && (typeof message.content === "string" )) ? (
-            <li className="flex ms-auto gap-x-4 sm:gap-x-4 max-w-xl pb-1">
-                <div className="grow text-end space-y-3">
-                    <div className="inline-block flex-col justify-end">
-                        {/*  Card  */}
-                        <div className="inline-block whitespace-pre-wrap w-fit bg-blue-600 rounded-2xl p-4 shadow-md">
-                            <p className="block text-sm text-white">
-                                { message.content }
-                            </p>
-                        </div>
-                        {/*  End Card */}
-                        <span className="mt-1.5 ms-auto flex items-center gap-x-1 text-xs text-gray-500 dark:text-neutral-500">
-                            {/* { `${message.timestamp.toLocaleString()}` } */}
-                            time
-                        </span>
-                    </div>
+        <div className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
+            <div className={`flex gap-2 max-w-[80%] ${message.isBot ? 'flex-row' : 'flex-row-reverse'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0
+                    ${message.isBot ? 'bg-blue-100' : 'bg-gray-100'}`}>
+                    {message.isBot ? 
+                        <img src={"https://pbs.twimg.com/profile_images/1488857444013027330/kpyepi0k_400x400.jpg"} alt="Bot" className="w-full h-full object-contain rounded-full mt-2" /> 
+                        :
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-gray-500">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    }
                 </div>
-
-                <span className="shrink-0 inline-flex items-center justify-center size-[38px] rounded-full bg-gray-600">
-                    <span className="text-sm font-medium text-white leading-none">
-                        {/* { message.senderId.substring(0,3) } */}
-                        User
-                    </span>
-                </span>
-            </li>
-
-        ) : (
-            (typeof message.content !== "string") ? (
-                <li className="max-w-xl flex gap-x-4 sm:gap-x-4 pb-1">
-                    <span className="shrink-0 inline-flex items-center justify-center size-[38px] rounded-full bg-gray-600">
-                        <span className="text-sm font-medium text-white leading-none">
-                            {/* { message.senderId.substring(0,3) } */}
-                            Cof
-                        </span>
-                    </span>
-                    <div>
-                        <div className="bg-white w-fit border whitespace-pre-wrap border-gray-200 rounded-2xl p-4 space-y-3 dark:bg-neutral-900 dark:border-neutral-700 shadow-md">
-                            <table className="min-w-full">
-                                <thead>
-                                <tr className="border-b border-gray-200">
-                                    {/* <th className="py-2 px-3 text-left">Producto</th> */}
-                                    <th className="py-2 px-3 text-left">ID</th>
-                                    <th className="py-2 px-3 text-left">Score</th>
-                                    <th className="py-2 px-3 text-left">Razón</th>
-                                </tr>
-                                </thead> 
-                                <tbody>
-                                { message.content.productos.map((row, rowIndex) => (
-                                    <tr key={rowIndex} className="border-b border-gray-200 last:border-b-0">
-                                    {/* <td className="py-2 px-3">{row.name}</td> */}
-                                    <td className="py-2 px-3">{row.id}</td>
-                                    <td className="py-2 px-3">{row.score}</td>
-                                    <td className="py-2 px-3">{row.reason}</td>
-                                    </tr>
-                                ))}
-                                </tbody>
-                            </table>
+                {
+                    ((typeof message.content === 'object' && 'introText' in message.content && message.content.introText === "") || message.content === "") ?
+                    <TypingIndicator /> :
+                    <div
+                    className={`rounded-2xl px-4 py-3 ${
+                    message.isBot
+                        ? 'bg-white border border-gray-200 shadow-sm'
+                        : 'bg-[#fb2070] text-white'
+                    }`}
+                >
+                    {message.content && (
+                        <p className={`text-sm ${message.isBot ? 'text-[#1B2A4E]' : 'text-white'} ${typeof message.content === 'object' && message.content.introText ? 'mb-3' : ''}`}>
+                            {typeof message.content === 'string' ? (
+                                isLastMessage && message.isBot ? <AnimatedText text={message.content} /> : message.content
+                            ) : (
+                                isLastMessage && message.isBot ? <AnimatedText text={message.content.introText} /> : message.content.introText
+                            )}
+                        </p>
+                    )}
+                    {typeof message.content === 'object' && 'products' in message.content && message.content.products.length > 0 && (
+                        <div className="transition-opacity duration-300">
+                            <ProductsTable isLastMessage={isLastMessage} products={message.content.products} productCount={message.content.productCount} />
                         </div>
-                        <span className="mt-1.5 ms-auto flex items-center gap-x-1 text-xs text-gray-500 dark:text-neutral-500">
-                            {/* { `${message.timestamp.toLocaleString()}` } */}
-                            time
-                        </span>
+                    )}
+                    <p className="text-xs mt-2 opacity-70">
+                        {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </p>
                     </div>
-
-                </li>
-            ) : (
-                <li className="max-w-xl flex gap-x-4 sm:gap-x-4 pb-1">
-                <span className="shrink-0 inline-flex items-center justify-center size-[38px] rounded-full bg-gray-600">
-                    <span className="text-sm font-medium text-white leading-none">
-                        {/* { message.senderId.substring(0,3) } */}
-                        Cof
-                    </span>
-                </span>
-                <div>
-                    <div className="bg-white w-fit border whitespace-pre-wrap border-gray-200 rounded-2xl p-4 space-y-3 dark:bg-neutral-900 dark:border-neutral-700 shadow-md">
-                        { message.content }
-                    </div>
-                    <span className="mt-1.5 ms-auto flex items-center gap-x-1 text-xs text-gray-500 dark:text-neutral-500">
-                        {/* { `${message.timestamp.toLocaleString()}` } */}
-                        time
-                    </span>
-                </div>
-
-            </li>
-            )
-        )
-        
-        
+                }
+            </div>
+        </div>
     )
 }
