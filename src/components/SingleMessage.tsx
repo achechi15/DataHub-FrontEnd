@@ -33,29 +33,29 @@ export const SingleMessage = ({ message, isLastMessage }: Props) => {
                     ((typeof message.content === 'object' && 'introText' in message.content && message.content.introText === "") || message.content === "") ?
                     <TypingIndicator /> :
                     <div
-                    className={`rounded-2xl px-4 py-3 ${
+                    className={`rounded-2xl px-4 py-3 my-4 ${
                     message.isBot
                         ? 'bg-white border border-gray-200 shadow-sm'
-                        : 'bg-[#fb2070] text-white'
+                        : 'bg-[#fb2070] text-white max-w-[80%] break-words'
                     }`}
-                >
-                    {message.content && (
-                        <p className={`text-sm ${message.isBot ? 'text-[#1B2A4E]' : 'text-white'} ${typeof message.content === 'object' && message.content.introText ? 'mb-3' : ''}`}>
-                            {typeof message.content === 'string' ? (
-                                isLastMessage && message.isBot ? <AnimatedText text={message.content} /> : message.content
-                            ) : (
-                                isLastMessage && message.isBot ? <AnimatedText text={message.content.introText} /> : message.content.introText
-                            )}
+                    >
+                        {message.content && (
+                            <p className={`text-sm ${message.isBot ? 'text-[#1B2A4E]' : 'text-white'} ${typeof message.content === 'object' && message.content.introText ? 'mb-3' : ''}`}>
+                                {typeof message.content === 'string' ? (
+                                    isLastMessage && message.isBot ? <AnimatedText text={message.content} /> : message.content
+                                ) : (
+                                    isLastMessage && message.isBot ? <AnimatedText text={message.content.introText} /> : message.content.introText
+                                )}
+                            </p>
+                        )}
+                        {typeof message.content === 'object' && 'products' in message.content && message.content.products.length > 0 && (
+                            <div className="transition-opacity duration-300">
+                                <ProductsTable isLastMessage={isLastMessage} products={message.content.products} productCount={message.content.productCount} />
+                            </div>
+                        )}
+                        <p className="text-xs mt-2 opacity-70">
+                            {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </p>
-                    )}
-                    {typeof message.content === 'object' && 'products' in message.content && message.content.products.length > 0 && (
-                        <div className="transition-opacity duration-300">
-                            <ProductsTable isLastMessage={isLastMessage} products={message.content.products} productCount={message.content.productCount} />
-                        </div>
-                    )}
-                    <p className="text-xs mt-2 opacity-70">
-                        {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </p>
                     </div>
                 }
             </div>

@@ -12,7 +12,7 @@ export const ProductsTable = ({ products, isLastMessage, productCount }: Props) 
     const [isExpanded, setIsExpanded] = useState(isLastMessage);
 
     return (
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+        <div className="overflow-hidden rounded-lg border min-w-[80vh] border-gray-200 bg-white">
             <div className="flex flex-col">
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}
@@ -55,7 +55,8 @@ export const ProductsTable = ({ products, isLastMessage, productCount }: Props) 
                             key={product.id}
                             className={`p-4 ${
                         index !== products.length - 1 ? 'border-b border-gray-200' : ''
-                            } hover:bg-gray-50 transition-colors`}
+                            } hover:bg-gray-50 transition-colors animate-expandHeight`}
+                            style={{ animationDelay: `$0.1s` }}
                         >
                             <div className="flex gap-4">
                                 {/* Product Image */}

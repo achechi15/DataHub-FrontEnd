@@ -11,7 +11,7 @@ export const Header = () => {
                     />
                 </div>
                 <div>
-                    <h2 className="text-white font-bold text-lg">Asistente Virtual (CofAsist)</h2>
+                    <h2 className="text-white font-bold text-lg">CofareSearch</h2>
                     <p className="text-[#fb2070] text-sm flex items-center">
                         <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
                         En línea

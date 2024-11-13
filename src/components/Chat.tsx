@@ -13,13 +13,13 @@ export const Chat = ({ isOpen }: Props) => {
 
     const { isLoading } = useChatStore();
 
-    useEffect(() => {
-        console.log("Se ha montado el componente chat");
+    // useEffect(() => {
+    //     console.log("Se ha montado el componente chat");
 
-        return () => {
-            console.log("Se ha desmontado el componente chat");
-        };
-    }, []);
+    //     return () => {
+    //         console.log("Se ha desmontado el componente chat");
+    //     };
+    // }, []);
 
     return (
         <div className={`max-w-7xl w-[100%] flex flex-col transform transition-all duration-300 ease-in-out
