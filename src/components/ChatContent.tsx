@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useChatStore } from '../store/chat-store'
+import { useChatStore } from '../store/chat-store';
 import { SingleMessage } from './SingleMessage';
 
 export const ChatContent = () => {
@@ -8,21 +8,34 @@ export const ChatContent = () => {
 
     const messagesEndRef = useRef<null | HTMLDivElement>(null);
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth'});
+        messagesEndRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+        });
     }
 
     useEffect(() => {
-        scrollToBottom();
+        // detengo la ejecución durante 0.5 segundos
+        setTimeout(() => {
+            scrollToBottom();
+        }, 500);
+        console.log("Se ha montado el componente chat content");
+
+        return () => {
+            console.log("Se ha desmontado el componente chat content");
+        };
     }, [chat]);
 
     return (
-        <div className="flex bg-gray-200 flex-1 w-full marginTop overflow-y-scroll">
-                <ul className="w-full h-[300px] m-10">
-                    {
-                        chat.map( message => <SingleMessage key={crypto.randomUUID()} message={message} />)
-                    }
-                    <div ref={messagesEndRef} />
-                </ul>
+        <div className="flex flex-1 bg-white">
+            <div className="flex flex-1 overflow-y-scroll bg-gray-200 w-full marginTop">
+                    <ul className="w-full h-[calc(100vh-400px)] m-5 py-5">
+                        {
+                            chat.map( (message, index) => <SingleMessage key={index} message={message} isLastMessage={index === chat.length - 1} />)
+                        }
+                        <div ref={messagesEndRef} />
+                    </ul>
+            </div>
         </div>
     )
 }
