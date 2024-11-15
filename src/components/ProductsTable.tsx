@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { producto } from '../screens/ChatPage';
+import { useChatStore } from '../store/chat-store';
 
 interface Props {
     products: producto[];
-    isLastMessage: boolean;
+    isLastMessage: number;
     productCount: number;
 }
 
 export const ProductsTable = ({ products, isLastMessage, productCount }: Props) => {
 
-    const [isExpanded, setIsExpanded] = useState(isLastMessage);
+    const { chat } = useChatStore();
+    const [isExpanded, setIsExpanded] = useState(isLastMessage === chat.length - 1);
+    useEffect(() => {
+        setIsExpanded(isLastMessage === chat.length - 1);
+    }, [isLastMessage, chat.length])
 
     return (
         <div className="overflow-hidden rounded-lg border min-w-[80vh] border-gray-200 bg-white">

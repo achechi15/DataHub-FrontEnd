@@ -1,19 +1,21 @@
-import { useState } from "react";
 import { Message } from "../entities/MessageEntity";
 import { ProductsTable } from "./ProductsTable";
 import { TypingIndicator } from "./TypingIndicator";
 import { AnimatedText } from "./functionalities/AnimatedText";
+import { useChatStore } from "../store/chat-store";
 // import { useChatStore } from "../store/chat-store";
 // import { useChatStore } from "../store/chat-store";
 
 interface Props {
     message: Message;
-    isLastMessage: boolean;
+    isLastMessage: number;
 }
 
 
 
 export const SingleMessage = ({ message, isLastMessage }: Props) => {
+
+    const { chat } = useChatStore();
 
 
     return (
@@ -42,9 +44,9 @@ export const SingleMessage = ({ message, isLastMessage }: Props) => {
                         {message.content && (
                             <p className={`text-sm ${message.isBot ? 'text-[#1B2A4E]' : 'text-white'} ${typeof message.content === 'object' && message.content.introText ? 'mb-3' : ''}`}>
                                 {typeof message.content === 'string' ? (
-                                    isLastMessage && message.isBot ? <AnimatedText text={message.content} /> : message.content
+                                    isLastMessage === chat.length - 1 && message.isBot ? <AnimatedText text={message.content} /> : message.content
                                 ) : (
-                                    isLastMessage && message.isBot ? <AnimatedText text={message.content.introText} /> : message.content.introText
+                                    isLastMessage === chat.length - 1 && message.isBot ? <AnimatedText text={message.content.introText} /> : message.content.introText
                                 )}
                             </p>
                         )}

@@ -1,5 +1,5 @@
 import { Send, Smile } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useChatStore } from "../store/chat-store";
 import { useWebSocketStore } from "../store/useWebSocketStore";
 

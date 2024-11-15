@@ -19,10 +19,10 @@ export const ChatContent = () => {
         setTimeout(() => {
             scrollToBottom();
         }, 500);
-        console.log("Se ha montado el componente chat content");
+        // console.log("Se ha montado el componente chat content");
 
         return () => {
-            console.log("Se ha desmontado el componente chat content");
+            // console.log("Se ha desmontado el componente chat content");
         };
     }, [chat]);
 
@@ -31,7 +31,7 @@ export const ChatContent = () => {
             <div className="flex flex-1 overflow-y-scroll bg-gray-200 w-full marginTop">
                     <ul className="w-full h-[calc(100vh-400px)] m-5 py-5">
                         {
-                            chat.map( (message, index) => <SingleMessage key={index} message={message} isLastMessage={index === chat.length - 1} />)
+                            chat.map( (message, index) => <SingleMessage key={index} message={message} isLastMessage={index} />)
                         }
                         <div ref={messagesEndRef} />
                     </ul>

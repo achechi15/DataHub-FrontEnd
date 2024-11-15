@@ -1,7 +1,5 @@
 import { SearchHeader } from '../components/SearchHeader';
 import { NavBar } from '../components/NavBar';
-import { SearchBar } from '../components/SearchBar';
-import { useState } from 'react';
 import { ResultHeader } from '../components/ResultHeader';
 
 export interface producto {
@@ -24,21 +22,21 @@ const products = [
     {
       id: "199450",
       name: "FARLINE CREMA MANOS ANTI-AGE 50ML",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://cdn2.nuestrafarma.com/12080-superlarge_default/farline-crema-de-manos-anti-edad-50-ml.jpg",
       price: 1.69,
       nextDelivery: "18/10/2024"
     },
     {
       id: "181547",
       name: "FARLINE CR MANOS REPARAD 50 ML",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREv7wE2NSpcD5JQF0mRdfyjPy4kHTULESpeg&s",
       price: 1.11,
       nextDelivery: "18/10/2024"
     },
     {
       id: "208685",
       name: "FARLINE CR MANOS BIO 50 ML",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://cdn2.nuestrafarma.com/13762-superlarge_default/farline-crema-de-manos-bio-50-ml.jpg",
       price: 1.94,
       nextDelivery: "18/10/2024"
     }
@@ -54,7 +52,6 @@ export const ChatPage = () => {
             <div className="bg-white min-h-[100%] pt-6">
                 <div className="max-w-7xl w-[90%] mx-auto shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-xl  overflow-hidden">
                     <SearchHeader />
-                    {/* <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} /> */}
                 </div>
                 <ResultHeader />
                 <div className="max-w-7xl w-[90%] mx-auto">
@@ -63,7 +60,7 @@ export const ChatPage = () => {
                     <div key={product.id} className="flex items-center gap-4 p-4 bg-white rounded-sm border">
                         <div className="w-24 h-24 relative">
                             <img
-                                src="https://via.placeholder.com/150"
+                                src={product.image}
                                 alt={product.name}
                                 className="w-full h-full object-contain"
                             />
