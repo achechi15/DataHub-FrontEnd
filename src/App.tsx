@@ -7,7 +7,9 @@ function App() {
 
   useEffect(() => {
     const { connect, disconnect } = useWebSocketStore.getState();
-    connect('ws://localhost:8000/chat/search/123');
+    const id = crypto.randomUUID();
+    console.log({id})
+    connect(`ws://localhost:8000/chat/search/${id}`);
 
     return () => {
       disconnect();

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useChatStore } from '../../store/chat-store';
 
 interface Props {

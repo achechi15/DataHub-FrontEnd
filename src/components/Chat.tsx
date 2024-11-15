@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
 import { ChatContent } from './ChatContent'
 import { ChatInput } from './ChatInput'
 import { useChatStore } from '../store/chat-store'
-import { useWebSocketStore } from '../store/useWebSocketStore'
 import { Header } from './Header'
 
 interface Props {

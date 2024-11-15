@@ -1,5 +1,4 @@
-import React from 'react'
-
+    
 export const TypingIndicator = () => {
     return (
         <div className="flex space-x-2 p-3 my-4 bg-white rounded-2xl border border-gray-200 shadow-sm">

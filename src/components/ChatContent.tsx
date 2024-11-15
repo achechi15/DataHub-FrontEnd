@@ -29,7 +29,7 @@ export const ChatContent = () => {
     return (
         <div className="flex flex-1 bg-white">
             <div className="flex flex-1 overflow-y-scroll bg-gray-200 w-full marginTop">
-                    <ul className="w-full h-[calc(100vh-400px)] m-5 py-5">
+                    <ul className="w-full h-[calc(100vh-200px)] m-5 py-5">
                         {
                             chat.map( (message, index) => <SingleMessage key={index} message={message} isLastMessage={index} />)
                         }
