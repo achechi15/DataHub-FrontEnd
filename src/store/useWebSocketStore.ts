@@ -57,7 +57,7 @@ export const useWebSocketStore = create<WebSocketState>()( (set, get) => ({
                         isBot: true,
                         content: {
                             ...message,
-                            introText: decodeUnicode(message.introText),
+                            introText: message.introText,
                         },
                         timestamp: new Date(),
                     })

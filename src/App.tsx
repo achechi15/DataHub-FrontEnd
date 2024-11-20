@@ -1,11 +1,15 @@
 import { ChatPage } from "./screens/ChatPage"
-import './app.css';
+import './App.css';
 import { useEffect } from "react";
 import { useWebSocketStore } from "./store/useWebSocketStore";
 
 
 const websocketUrl = import.meta.env.VITE_WEBSOCKET_URL;
-console.log(websocketUrl)
+if (!websocketUrl) {
+  throw new Error("VITE_WEBSOCKET_URL is not defined");
+}
+console.log(websocketUrl);
+
 function App() {
 
 
@@ -13,7 +17,8 @@ function App() {
     const { connect, disconnect } = useWebSocketStore.getState();
     const id = crypto.randomUUID();
     console.log({id})
-    connect(`${import.meta.env.VITE_WEBSOCKET_URL}/chat/search/${id}`);
+    console.log(`${websocketUrl}/chat/search/${id}`)
+    connect(`${websocketUrl}/chat/search/${id}`);
 
     return () => {
       disconnect();

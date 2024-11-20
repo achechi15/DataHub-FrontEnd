@@ -4,7 +4,7 @@ export const NavBar = () => {
         <nav className="bg-[#1e2a4a] text-white p-4">
             <div className="max-w-[100%] mx-auto flex justify-between items-center">
                 <div className="text-xl font-bold">
-                Logito de cofares bien guapo
+                CoFinder
                 </div>
                 <div className="flex gap-6 items-center">
                     <a href="#" className="hover:text-gray-300">Algo</a>

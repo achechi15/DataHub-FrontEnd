@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { useChatStoreDeepDive } from "./useChatStoreDeepDive";
-import { decodeUnicode } from "../useWebSocketStore";
+// import { decodeUnicode } from "../useWebSocketStore";
 
 interface WebSocketState {
     ws: WebSocket | null;
@@ -21,7 +21,7 @@ export const useWebSocketsDeepDive = create<WebSocketState>()( (set, get) => ({
             ws.onmessage = (event: MessageEvent) => {
                 // console.log(event.data);
                 const data = JSON.parse(event.data);
-                // console.log(data);
+                console.log(data);
                 if (data.type === 'start') {
                     useChatStoreDeepDive.getState().setIsLoading(true);
                     useChatStoreDeepDive.getState().addMessage({
@@ -39,7 +39,8 @@ export const useWebSocketsDeepDive = create<WebSocketState>()( (set, get) => ({
                         isBot: true,
                         content: {
                             ...message,
-                            introText: decodeUnicode(message.introText),
+                            // introText: decodeUnicode(message.introText),
+                            introText: message.introText,
                         },
                         timestamp: new Date(),
                     })
@@ -49,7 +50,7 @@ export const useWebSocketsDeepDive = create<WebSocketState>()( (set, get) => ({
                     useChatStoreDeepDive.getState().setIsLoading(false);
                 }
             }
-    
+
             set(() => ({ ws }));
         } catch (error) {
             console.log({error})

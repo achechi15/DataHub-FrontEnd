@@ -10,19 +10,21 @@ export const Header = () => {
     const { ws } = useWebSocketStore();
     const { connect } = useWebSocketsDeepDive();
     const [isOnline, setIsOnline] = useState(false);
-    
+
     const { selectedProducts, setIsModalOpen } = useChatStore();
 
     const handleDeepDive = async () => {
         setIsModalOpen(true);
         console.log("Ha entrado");
         useChatStoreDeepDive.getState().setIsLoading(true);
-        // console.log(`${import.meta.env.VITE_API_URL}/chat/deep-dive`)
+        console.log(`${import.meta.env.VITE_API_URL}/chat/deep-dive`)
+        console.log(JSON.stringify({
+            products: selectedProducts
+        }));
         const response = await fetch(`${import.meta.env.VITE_API_URL}/chat/deep-dive`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Origin': 'http://localhost:5173'
             },
             body: JSON.stringify({
                 products: selectedProducts
@@ -31,6 +33,7 @@ export const Header = () => {
         const id = await response.json();
         console.log(id);
         //TODO: Cambiar el ws por el que se conecta a la deep dive
+        console.log(`${import.meta.env.VITE_WEBSOCKET_URL}/chat/deep-dive/${id.id}`);
         connect(`${import.meta.env.VITE_WEBSOCKET_URL}/chat/deep-dive/${id.id}`);
     }
 
@@ -71,7 +74,7 @@ export const Header = () => {
                     />
                 </div>
                 <div>
-                    <h2 className="text-white font-bold text-lg">CofareSearch</h2>
+                    <h2 className="text-white font-bold text-lg">CoFinder</h2>
                     <p className="text-[#fb2070] text-sm flex items-center">
                         { isOnline ? (
                             <>
