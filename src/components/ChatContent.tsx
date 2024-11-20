@@ -3,9 +3,10 @@ import { SingleMessage } from './SingleMessage';
 import { Message } from '../entities/MessageEntity';
 interface Props {
     chat: Message[];
+    isDeepDive: boolean;
 }
 
-export const ChatContent = ({ chat }: Props) => {
+export const ChatContent = ({ chat, isDeepDive }: Props) => {
 
     // const { chat } = useChatStore();
 
@@ -34,7 +35,7 @@ export const ChatContent = ({ chat }: Props) => {
             <div className="flex flex-1 overflow-y-scroll bg-gray-200 w-full marginTop">
                     <ul className="w-full h-[calc(100vh-200px)] m-5 py-5">
                         {
-                            chat.map( (message, index) => <SingleMessage key={index} message={message} isLastMessage={index} chat={chat} />)
+                            chat.map( (message, index) => <SingleMessage key={index} message={message} isLastMessage={index} chat={chat} isDeepDive={isDeepDive} />)
                         }
                         <div ref={messagesEndRef} />
                     </ul>

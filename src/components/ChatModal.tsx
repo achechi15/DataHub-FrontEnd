@@ -30,6 +30,8 @@ export const ChatModal = () => {
 
     }
     
+    console.log(chat);
+
     if (!isModalOpen) return null;
     
     const handleSend = () => {
@@ -107,7 +109,7 @@ export const ChatModal = () => {
                             }
                         </div>
                         <div className="flex-1 overflow-y-auto">
-                            <ChatContent chat={chat} />
+                            <ChatContent chat={chat} isDeepDive={true} />
                         </div>
                     </div>
                 </div>

@@ -37,7 +37,7 @@ export const useWebSocketStore = create<WebSocketState>()( (set, get) => ({
                 console.log('ws conectado');
             }
             ws.onmessage = (event: MessageEvent) => {
-                // console.log(event.data);
+                console.log(event.data);
                 const data = JSON.parse(event.data);
                 // console.log(data);
                 if (data.type === 'start') {
@@ -51,6 +51,7 @@ export const useWebSocketStore = create<WebSocketState>()( (set, get) => ({
                 }
                 else if (data.type === 'stream') {
                     const message = JSON.parse(data.textPart);
+                    console.log(message);
                     // console.log(decodeUnicode(message.introText.slice(0, -1)));
                     useChatStore.getState().editLastMessage({
                         id: "xd",

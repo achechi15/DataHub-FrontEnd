@@ -7,12 +7,15 @@ interface Props {
     message: Message;
     isLastMessage: number;
     chat: Message[];
+    isDeepDive: boolean;
 }
 
+export const SingleMessage = ({ message, isLastMessage, chat, isDeepDive }: Props) => {
 
-
-export const SingleMessage = ({ message, isLastMessage, chat }: Props) => {
-
+    if (isDeepDive) {
+        console.log(message.content);
+    }
+    
 
     return (
         <div className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
@@ -37,7 +40,8 @@ export const SingleMessage = ({ message, isLastMessage, chat }: Props) => {
                         : 'bg-[#fb2070] text-white max-w-[80%] break-words'
                     }`}
                     >
-                        {message.content && (
+                        {  !isDeepDive ? (
+                        message.content && (
                             <p className={`text-sm ${message.isBot ? 'text-[#1B2A4E]' : 'text-white'} ${typeof message.content === 'object' && message.content.introText ? 'mb-3' : ''}`}>
                                 {typeof message.content === 'string' ? (
                                     isLastMessage === chat.length - 1 && message.isBot ? <AnimatedText text={message.content} /> : message.content
@@ -45,7 +49,15 @@ export const SingleMessage = ({ message, isLastMessage, chat }: Props) => {
                                     isLastMessage === chat.length - 1 && message.isBot ? <AnimatedText text={message.content.introText} /> : message.content.introText
                                 )}
                             </p>
-                        )}
+                        )) : (
+                            message.content && (
+                                typeof message.content === 'string' ? (
+                                    <div dangerouslySetInnerHTML={{ __html: message.content }} />
+                                ) : (
+                                    <div dangerouslySetInnerHTML={{ __html: message.content.introText }} />
+                                )
+                            ))
+                        }
                         {typeof message.content === 'object' && 'products' in message.content && message.content.products.length > 0 && (
                             <div className="transition-opacity duration-300">
                                 <ProductsTable isLastMessage={isLastMessage} products={message.content.products} productCount={message.content.productCount} />

@@ -19,7 +19,7 @@ export const useWebSocketsDeepDive = create<WebSocketState>()( (set, get) => ({
                 useChatStoreDeepDive.getState().setIsLoading(false);
             }
             ws.onmessage = (event: MessageEvent) => {
-                // console.log(event.data);
+                console.log(event.data);
                 const data = JSON.parse(event.data);
                 console.log(data);
                 if (data.type === 'start') {
