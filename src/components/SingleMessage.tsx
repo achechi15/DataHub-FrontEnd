@@ -17,9 +17,9 @@ export const SingleMessage = ({ message, isLastMessage, chat, isDeepDive }: Prop
         console.log(message.content);
     }
     
-    const htmlContent = `
-<!DOCTYPE html> <html> <head> <title>APOSAN TIRAS INF DINO 20U 2TAM</title> </head> <body> <h1>APOSAN TIRAS INF DINO 20U 2TAM</h1> <h2>Descripción del Producto</h2> <p>APOSAN BOTIQUIN TIRAS PLASTICAS INFANTILES 20 UNIDADES 2 TAMAÑOS DINOSAURIOS. Tiras infantiles plásticas destinadas a adherirse a la piel con el fin de proteger las heridas. No esterilizadas. Un solo uso. Libre de látex. Testadas a nivel dermatológico y pediátrico. 2 tamaños: 72 x 19 mm (10 uds) y 57 x 16 mm (10 uds).</p> <h2>Composición</h2> <p>Libre de látex</p> <h2>Imágenes</h2> <p>La información de las imágenes varía según la fuente. En general muestran una caja rectangular con un diseño predominantemente rojo carmesí brillante con el logo de Aposan en blanco y azul. Las tiritas ilustradas presentan diseños con tonos azul claro, verde claro y blanco sobre un fondo beige claro. Algunas imágenes muestran tiritas con diseños morados sobre fondo blanco y otros con dibujos verdes sobre fondo blanco, con la caja principalmente roja y blanca. Otras imágenes muestran un apósito rectangular beige claro con un patrón de figuras verde azulado.</p> </body> </html>
-    `;
+//     const htmlContent = `
+// <!DOCTYPE html> <html> <head> <title>APOSAN TIRAS INF DINO 20U 2TAM</title> </head> <body> <h1>APOSAN TIRAS INF DINO 20U 2TAM</h1> <h2>Descripción del Producto</h2> <p>APOSAN BOTIQUIN TIRAS PLASTICAS INFANTILES 20 UNIDADES 2 TAMAÑOS DINOSAURIOS. Tiras infantiles plásticas destinadas a adherirse a la piel con el fin de proteger las heridas. No esterilizadas. Un solo uso. Libre de látex. Testadas a nivel dermatológico y pediátrico. 2 tamaños: 72 x 19 mm (10 uds) y 57 x 16 mm (10 uds).</p> <h2>Composición</h2> <p>Libre de látex</p> <h2>Imágenes</h2> <p>La información de las imágenes varía según la fuente. En general muestran una caja rectangular con un diseño predominantemente rojo carmesí brillante con el logo de Aposan en blanco y azul. Las tiritas ilustradas presentan diseños con tonos azul claro, verde claro y blanco sobre un fondo beige claro. Algunas imágenes muestran tiritas con diseños morados sobre fondo blanco y otros con dibujos verdes sobre fondo blanco, con la caja principalmente roja y blanca. Otras imágenes muestran un apósito rectangular beige claro con un patrón de figuras verde azulado.</p> </body> </html>
+//     `;
 
     return (
         <div className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
@@ -58,7 +58,7 @@ export const SingleMessage = ({ message, isLastMessage, chat, isDeepDive }: Prop
                                 typeof message.content === 'string' ? (
                                     <div className="dynamic-content" dangerouslySetInnerHTML={{ __html: message.content }} />
                                 ) : (
-                                    <div className="dynamic-content " dangerouslySetInnerHTML={{ __html: htmlContent }} />
+                                    <div className="dynamic-content " dangerouslySetInnerHTML={{ __html: message.content.introText }} />
                                 )
                             ))
                         }
