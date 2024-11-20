@@ -3,13 +3,14 @@ import { ChatInput } from './ChatInput'
 import { useChatStore } from '../store/chat-store'
 import { Header } from './Header'
 
+
 interface Props {
     isOpen: boolean;
 }
 
 export const Chat = ({ isOpen }: Props) => {
 
-    const { isLoading } = useChatStore();
+    const { isLoading, chat } = useChatStore();
 
     // useEffect(() => {
     //     console.log("Se ha montado el componente chat");
@@ -25,7 +26,7 @@ export const Chat = ({ isOpen }: Props) => {
                 
                 <div className={`bg-white pt-4 rounded-t-xl shadow-sm `}>
                     <Header />
-                    <ChatContent />
+                    <ChatContent chat={chat} />
                 </div>
 
                 <ChatInput isLoading={isLoading} />

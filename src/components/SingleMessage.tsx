@@ -2,20 +2,16 @@ import { Message } from "../entities/MessageEntity";
 import { ProductsTable } from "./ProductsTable";
 import { TypingIndicator } from "./TypingIndicator";
 import { AnimatedText } from "./functionalities/AnimatedText";
-import { useChatStore } from "../store/chat-store";
-// import { useChatStore } from "../store/chat-store";
-// import { useChatStore } from "../store/chat-store";
 
 interface Props {
     message: Message;
     isLastMessage: number;
+    chat: Message[];
 }
 
 
 
-export const SingleMessage = ({ message, isLastMessage }: Props) => {
-
-    const { chat } = useChatStore();
+export const SingleMessage = ({ message, isLastMessage, chat }: Props) => {
 
 
     return (

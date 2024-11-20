@@ -1,10 +1,13 @@
 import { useEffect, useRef } from 'react'
-import { useChatStore } from '../store/chat-store';
 import { SingleMessage } from './SingleMessage';
+import { Message } from '../entities/MessageEntity';
+interface Props {
+    chat: Message[];
+}
 
-export const ChatContent = () => {
+export const ChatContent = ({ chat }: Props) => {
 
-    const { chat } = useChatStore();
+    // const { chat } = useChatStore();
 
     const messagesEndRef = useRef<null | HTMLDivElement>(null);
     const scrollToBottom = () => {
@@ -31,7 +34,7 @@ export const ChatContent = () => {
             <div className="flex flex-1 overflow-y-scroll bg-gray-200 w-full marginTop">
                     <ul className="w-full h-[calc(100vh-200px)] m-5 py-5">
                         {
-                            chat.map( (message, index) => <SingleMessage key={index} message={message} isLastMessage={index} />)
+                            chat.map( (message, index) => <SingleMessage key={index} message={message} isLastMessage={index} chat={chat} />)
                         }
                         <div ref={messagesEndRef} />
                     </ul>

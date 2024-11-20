@@ -22,12 +22,20 @@ export const ChatInput = ({ isLoading }: Props) => {
             timestamp: new Date(),
         })
 
+        const filters = useChatStore.getState().filter;
         // Envío el mensaje al websocket
-        useWebSocketStore.getState().sendMessage(content);
 
+        const message = {
+            userInput: content,
+            filters: {
+                type1: filters[0],
+                type2: filters[1],
+            }
+        }
+        console.log(message);
+        useWebSocketStore.getState().sendMessage(JSON.stringify(message));
 
     }
-
     
     const [input, setInput] = useState("");
     const textareaRef = useRef<HTMLTextAreaElement>(null);

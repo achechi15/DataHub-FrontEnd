@@ -1,19 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Chat } from './Chat';
 import { SearchBar } from './SearchBar';
+import { useChatStore } from '../store/chat-store';
+import { ChatModal } from './ChatModal';
+// import { ListProductsCofares } from './ListProductsCofares';
 
-export const SearchHeader: React.FC = () => {
-    const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+
+interface Props {
+    isChatbotOpen: boolean;
+    setIsChatbotOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const SearchHeader= ({isChatbotOpen, setIsChatbotOpen}: Props) => {
+    // const [isChatbotOpen, setIsChatbotOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('crema de manos');
 
-    // useEffect(() => {
-    //     console.log("Se ha montado el componente");
+    const { setFilter } = useChatStore();
 
-    //     return () => {
-    //         console.log("Se ha desmontado el componente");
-    //     };
-    // }, []);
+    const [filters, setFilters] = useState({
+        catalogs: 'TodosCatalogos',
+        families: 'TodasFamilias',
+    });
 
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFilters(prev => ({ ...prev, [name]: value }));
+    }
+
+    useEffect(() => {
+        const tempFilter = [filters.catalogs, filters.families];
+        setFilter(tempFilter);
+        console.log();
+    }, [setFilter, filters]);
 
     return (
         <>
@@ -30,11 +48,22 @@ export const SearchHeader: React.FC = () => {
                         Asistente Virtual
                     </button>
                     <div className="flex items-center gap-8 mt-2 ml-4">
-                        <select className="rounded-full px-3 py-2">
-                            <option>Todos los catálogos</option>
+                        <select className="rounded-full px-3 py-2"
+                            name="catalogs"
+                            value={filters.catalogs}
+                            onChange={handleSelectChange}
+                        >
+                            <option value="TodosCatalogos">Todos los catálogos</option>
+                            <option value="ns">Ns, lo que sea</option>
+                            <option value="hola">Hola mundo</option>
                         </select>
-                        <select className="rounded-full px-3 py-2">
-                            <option>Todas las familias</option>
+                        <select className="rounded-full px-3 py-2"
+                            name="families"
+                            onChange={handleSelectChange}
+                        >
+                            <option value="TodasFamilias">Todas las familias</option>
+                            <option value="xd">xd</option>
+                            <option value="vale">vale</option>
                         </select>
                         <label className="flex items-center gap-2">
                             <input type="checkbox" />
@@ -62,6 +91,8 @@ export const SearchHeader: React.FC = () => {
                 <Chat isOpen={isChatbotOpen} />
             </div>
             {!isChatbotOpen && <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
+            <ChatModal />
+            {/* <ListProductsCofares /> */}
         </>
     );
 }
