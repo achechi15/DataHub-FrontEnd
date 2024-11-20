@@ -55,7 +55,7 @@ export const SingleMessage = ({ message, isLastMessage, chat, isDeepDive }: Prop
                                 typeof message.content === 'string' ? (
                                     <div className="dynamic-content" dangerouslySetInnerHTML={{ __html: message.content }} />
                                 ) : (
-                                    <div className="dynamic-content" dangerouslySetInnerHTML={{ __html: message.content.introText }} />
+                                    <div className="dynamic-content " dangerouslySetInnerHTML={{ __html: message.content.introText }} />
                                 )
                             ))
                         }

@@ -26,7 +26,7 @@ export const Chat = ({ isOpen }: Props) => {
                 
                 <div className={`bg-white pt-4 rounded-t-xl shadow-sm `}>
                     <Header />
-                    <ChatContent chat={chat} />
+                    <ChatContent chat={chat} isDeepDive={false} />
                 </div>
 
                 <ChatInput isLoading={isLoading} />
