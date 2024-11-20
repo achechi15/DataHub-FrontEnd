@@ -1,4 +1,3 @@
-
 .dynamic-content table th, .dynamic-content table td { padding: 12px 15px; }
 
 .dynamic-content table thead tr { background-color: #fb2070; color: #ffffff; text-align: middle; }
@@ -17,3 +16,100 @@
 .dynamic-content table tbody tr:nth-of-type(even) { background-color: #f3f3f3; }
 
 /* .dynamic-content table tbody tr:last-of-type { border-bottom: 2px solid #fb2070; } */
+
+.dynamic-content h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.dynamic-content h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.dynamic-content p {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+
+.dynamic-content ul, .dynamic-content ol {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #718096;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.dynamic-content li {
+    margin-bottom: 0.5rem;
+}
+
+.dynamic-content a {
+    color: #fb2070;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.dynamic-content a:hover {
+    color: #d91a5d;
+    text-decoration: underline;
+}
+
+.dynamic-content blockquote {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #4a5568;
+    border-left: 4px solid #fb2070;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+}
+
+.dynamic-content code {
+    font-family: monospace;
+    font-size: 0.9em;
+    background-color: #f7f7f7;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    color: #fb2070;
+}
+
+.dynamic-content pre {
+    background-color: #f7f7f7;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.dynamic-content pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.9rem;
+    color: #2d3748;
+}
+
+.dynamic-content hr {
+    border: 0;
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 2rem 0;
+}
+
+.dynamic-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
+    border-radius: 5px;
+}
