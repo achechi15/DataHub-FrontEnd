@@ -2,6 +2,7 @@ import { Message } from "../entities/MessageEntity";
 import { ProductsTable } from "./ProductsTable";
 import { TypingIndicator } from "./TypingIndicator";
 import { AnimatedText } from "./functionalities/AnimatedText";
+import "../styles/deepdive.css";
 
 interface Props {
     message: Message;
@@ -52,9 +53,9 @@ export const SingleMessage = ({ message, isLastMessage, chat, isDeepDive }: Prop
                         )) : (
                             message.content && (
                                 typeof message.content === 'string' ? (
-                                    <div dangerouslySetInnerHTML={{ __html: message.content }} />
+                                    <div className="dynamic-content" dangerouslySetInnerHTML={{ __html: message.content }} />
                                 ) : (
-                                    <div dangerouslySetInnerHTML={{ __html: message.content.introText }} />
+                                    <div className="dynamic-content" dangerouslySetInnerHTML={{ __html: message.content.introText }} />
                                 )
                             ))
                         }

@@ -1,0 +1,19 @@
+
+.dynamic-content table th, .dynamic-content table td { padding: 12px 15px; }
+
+.dynamic-content table thead tr { background-color: #fb2070; color: #ffffff; text-align: middle; }
+
+.dynamic-content table { 
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 450px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); 
+}
+
+.dynamic-content table tbody tr { font-size: 1em; font-family: sans-serif; border-bottom: 1px solid #dddddd; }
+
+.dynamic-content table tbody tr:nth-of-type(even) { background-color: #f3f3f3; }
+
+/* .dynamic-content table tbody tr:last-of-type { border-bottom: 2px solid #fb2070; } */
