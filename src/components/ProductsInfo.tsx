@@ -11,7 +11,7 @@ export const ProductsInfo = ({products, isExpanded}: Props) => {
     return (
         <div
             className={`transition-all duration-300 ease-in-out ${
-            isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+            isExpanded ? 'opacity-100' : 'max-h-0 opacity-0'
             } overflow-hidden`}
         >
             {products.map((product, index) => (

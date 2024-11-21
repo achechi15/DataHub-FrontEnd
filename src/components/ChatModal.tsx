@@ -7,7 +7,7 @@ import { useWebSocketsDeepDive } from "../store/deepDive/useWebSocketsDeepDive";
 
 
 export const ChatModal = () => {
-    
+
     const { isModalOpen, setIsModalOpen, selectedProducts, resetSelectedProducts } = useChatStore();
     const { chat, addMessage, resetChat, isLoading } = useChatStoreDeepDive();
     const [input, setInput] = useState("");
@@ -30,7 +30,7 @@ export const ChatModal = () => {
 
     }
     
-    console.log(chat);
+    // console.log(chat);
 
     if (!isModalOpen) return null;
     

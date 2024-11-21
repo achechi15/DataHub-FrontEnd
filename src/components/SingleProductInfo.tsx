@@ -11,6 +11,7 @@ interface Props {
 export const SingleProductInfo = ({product, index, length}: Props) => {
 
     const [checkboxValues, setCheckboxValues] = useState<boolean>(false);
+    const [isVisible, setIsVisible] = useState<boolean>(true);
 
     useEffect(() => {
         const unsubscribe = useChatStore.subscribe((state, prevState) => {
@@ -45,21 +46,21 @@ export const SingleProductInfo = ({product, index, length}: Props) => {
             style={{ animationDelay: `0.1s` }}
             onClick={() => handleCheckboxChange()}
         >
-            <div className="flex gap-4">                                
+            <div className="flex gap-4">
                 {/* Product Image */}
-                {/* <div className="w-16 h-16 flex-shrink-0">
-                    {product.image ? (
-                        <img 
-                            src={product.image} 
+                <div className="w-16 h-16 flex-shrink-0">
+                    {(product.image && isVisible) && (
+                        <img
+                            src={`${import.meta.env.VITE_API_URL}/image/${product.image}`}
                             alt={product.name}
                             className="w-full h-full rounded-lg object-cover"
+                            onError={(e) => {
+                                // e.currentTarget.src = "https://fotostilfondo.com/9014-home_default/fondo-vinilo-blanco.jpg";
+                                setIsVisible(false);
+                            }}
                         />
-                    ) : (
-                        <div className="w-full h-full rounded-lg bg-gray-100 flex items-center justify-center">
-                            <img src="https://via.placeholder.com/150" alt={product.name} className="w-full h-full rounded-lg object-cover" />
-                        </div>
                     )}
-                </div> */}
+                </div>
 
                 {/* Product Info */}
                 <div className="flex-1 min-w-0">
@@ -87,7 +88,7 @@ export const SingleProductInfo = ({product, index, length}: Props) => {
 
                     <div className="flex items-center gap-2">
                         <div className="px-2 py-1 rounded-full bg-[#E3F3FF] text-[#1B355E] text-xs font-medium">
-                            Score: {product.score.toFixed(2)}
+                            Distance: {product.score.toFixed(2)}
                         </div>
                         {product.stock ? (
                             <span className="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800">

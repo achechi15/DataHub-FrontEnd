@@ -25,6 +25,7 @@ export const Header = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Origin': 'https://entrega5-front-109855577898.europe-southwest1.run.app/'
             },
             body: JSON.stringify({
                 products: selectedProducts
